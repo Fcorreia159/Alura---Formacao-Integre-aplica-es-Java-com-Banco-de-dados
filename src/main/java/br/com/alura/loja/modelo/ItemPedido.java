@@ -16,10 +16,10 @@ public class ItemPedido {
 
     private int quantidade;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Pedido pedido;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Produto produto;
 
     public ItemPedido(){
@@ -71,5 +71,9 @@ public class ItemPedido {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public BigDecimal getValor() {
+        return precoUnicatio.multiply(new BigDecimal(quantidade));
     }
 }
